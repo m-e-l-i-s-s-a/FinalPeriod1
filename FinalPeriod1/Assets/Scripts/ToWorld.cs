@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class HouseToWorld : MonoBehaviour
+public class ToWorld : MonoBehaviour
 {
 
         void OnTriggerEnter2D(Collider2D other)

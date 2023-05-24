@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -17,5 +17,11 @@ public class PlayerController : MonoBehaviour
         position.x = position.x + 3.0f * horizontal * Time.deltaTime;
         position.y = position.y + 3.0f * vertical * Time.deltaTime;
         transform.position = position;
+    }
+
+    public void DestroyPlayer()
+
+    {
+        Destroy(gameObject);
     }
 }

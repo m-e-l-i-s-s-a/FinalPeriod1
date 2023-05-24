@@ -10,7 +10,7 @@ public class BackToHouse : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>() != null)
         {
-            SceneManager.LoadScene("StarterHouse", LoadSceneMode.Additive);
+            SceneManager.LoadScene("StarterHouse", LoadSceneMode.Single);
         }
     }
 }

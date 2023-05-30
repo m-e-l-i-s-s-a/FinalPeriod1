@@ -5,19 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    
+
+    float horizontal;
+    float vertical;
+
+    Rigidbody2D rigidbody2d;
+
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+
         Vector2 move = new Vector2(horizontal, vertical);
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
@@ -26,15 +33,20 @@ public class PlayerController : MonoBehaviour
             lookDirection.Normalize();
         }
 
+
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
+    }
 
-        Vector2 position = transform.position;
+    void FixedUpdate()
+    {
+        Vector2 position = rigidbody2d.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
-        transform.position = position;
+        rigidbody2d.MovePosition(position);
     }
+
 
     public void DestroyPlayer()
 
